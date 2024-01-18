@@ -1,0 +1,94 @@
+<div class="jumbotron">
+    <hr class="my-4">
+<h1 class="display-4">Živjo, {{ userData.name }}!</h1>
+<p class="lead">Tukaj lahko urejaš in dodajaš storitve.</p>
+
+    <!--<p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+    <hr class="my-4">
+    <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>-->
+  <div class="container-fluid">
+
+    <div class="row">
+        <div class="col-md-4 mt-5">
+            <div class="card border-0 shadow p-3">
+                <div class="form-floating mb-3 tetx-center">
+                    <h5 class="text-center text-warning">Dodaj storitev</h5>
+                </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="lastName" name="lastName" [(ngModel)]="name">
+                        <label for="lastName">Ime storitve</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="firstName" name="firstname" [(ngModel)]="provider">
+                        <label for="firstname">Ponudnik storitve</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <select class="form-select" id="storitev" name="type" [(ngModel)]="type">
+                            <option value="" disabled selected hidden>Izberi tip storitve</option>
+                            <option value="Frizerstvo">Frizerstvo</option>
+                            <option value="Manikura">Manikura</option>
+                            <option value="Nega obraza">Nega obraza</option>
+                            <option value="Depilacija">Depilacija</option>
+                            <option value="Lash lift">Lash lift</option>
+                        </select>
+                        <label for="storitev">Tip storitve</label>
+                    </div>        
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="lastName" name="lastName" [(ngModel)]="duration">
+                        <label for="lastName">Trajanje</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="lastName" name="lastName" [(ngModel)]="cost">
+                        <label for="lastName">Cena</label>
+                    </div>
+                    <label for="termin">Izberi možne termine</label>
+                    <div *ngFor="let dateTime of dateTimes; let i = index" class="date-time-entry">
+                      <div class="center-div">
+                        <div class="row">
+                          <div class="col-md-4">
+                            <div class="form-group text-center"> <!-- Center the content within this div -->
+                              <label for="date">Date:</label>
+                              <input type="date" class="form-control" [(ngModel)]="dateTime.date" placeholder="">
+                            </div>
+                          </div>
+                          <div class="col-md-4">
+                            <div class="form-group text-center"> <!-- Center the content within this div -->
+                              <label for="timeFrom">Time From:</label>
+                              <input type="time" class="form-control" [(ngModel)]="dateTime.time" id="timeFrom">
+                            </div>
+                          </div>
+                          <div class="col-md-4">
+                            <label for="remove"></label>
+                            <div class="form-group text-center"> <!-- Center the content within this div -->
+                              <button class="btn btn-outline-danger" (click)="removeDateTime(i)">Remove</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <button type="button" class="btn btn-outline-primary" (click)="addDateTime()">+</button>
+                    
+                    <ul></ul>
+                    <button type="button" class="btn btn-outline-success" (click)="addService()">Add Service</button>
+
+            </div>
+        </div>
+        <div class="col-md-8 mt-2">
+            <h5 class="text-danger">Seznam storitev</h5>
+            <div class="card p-3 shadow">
+                <div class="card-body">
+                      <div class="row">
+                      <div class="col-md-4 mb-3" style="width: 18rem;" *ngFor="let service of servicesList">
+                        <img [src]="'assets/' + service.imageSrc" class="card-img-top" style="max-width: 100%; max-height: 170px;">
+                        <div class="card-body">
+                          <h5 class="card-title">{{ service.provider }}</h5>
+                          <p class="card-text">{{ service.name }}</p>
+                          <p class="card-text">Cena: {{ service.cost }} €</p>
+
+                            <button class="btn btn-outline-danger" (click)="deleteService(service)">Delete</button>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>

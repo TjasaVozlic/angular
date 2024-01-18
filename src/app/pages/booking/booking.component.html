@@ -1,0 +1,36 @@
+<div class="card mb-3 mx-auto" style="max-width: 540px;">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <img [src]="'assets/' + booked.imageSrc" class="img-fluid rounded-start h-100" alt="10" style="object-fit: cover;">
+    </div>
+      <div class="col-md-8">
+        <div class="card-body text-center"> <!-- Center the content -->
+          <p class="card-title">{{ booked.name }}</p>
+          <h5 class="card-text">Trajanje tretmaja: {{ booked.duration }} min </h5>
+          <h5 class="card-text">Prosti termini</h5>
+
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Datum storitve</th>
+                <th scope="col">Ura storitve</th>
+                <th scope="col">Izbira</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr  *ngFor="let dateTime of booked.dateTimes">
+                <td>{{dateTime.date}}</td>
+                <td>{{dateTime.time}}</td>
+                <td>
+                    <a class="btn btn-outline-info" 
+                       type="button" 
+                       (click)="submitBooking(booked, dateTime.date, dateTime.time)">Izberite</a>
+                  </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  

@@ -1,0 +1,60 @@
+<div class="jumbotron">
+  <hr class="my-4">
+  <h1 class="display-4" *ngIf="isLoggedIn()">Živjo, {{ userData.name }}!</h1>
+  <h1 class="display-4" *ngIf="!isLoggedIn()">Pozdravljeni!</h1>
+  <p class="lead">Izberite storitev, ki jo iščete.</p>
+
+  <!--<p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+  <hr class="my-4">
+  <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>-->
+  <div *ngIf = "!isModalOpen">
+  <ul class="nav justify-content-center">
+    <li class="nav-item">
+      <a class="nav-link active" (click)="filterByType('Frizerstvo')">Frizer</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" (click)="filterByType('Manikura')" >Manikura</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" (click)="filterByType('Nega obraza')">Nega obraza</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" (click)="filterByType('Depilacija')" >Depilacija</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" (click)="filterByType('Lash lift')">Lash lift</a>
+    </li>
+  </ul>
+
+  
+</div>     
+<div *ngIf = "!isModalOpen">
+      <div class="col-md-8 mt-2  mx-auto">
+          <h5 class="text-danger"></h5>
+          <div class="card p-3 shadow">
+              <div class="card-body">
+                    <div class="row">
+                    <div class="col-md-4 mb-3" style="width: 18rem;" *ngFor="let service of (selectedService ? filteredServices : servicesList)">
+                      <img [src]="'assets/' + service.imageSrc" class="card-img-top" style="max-width: 100%; max-height: 170px;">
+                      <div class="card-body">
+                          <h5 class="card-title">{{ service.provider }}</h5>
+                          <p class="card-text">{{ service.name }}</p>
+                          <p class="card-text">Cena: {{ service.cost }} €</p>
+
+                        <!-- ... Existing code ... -->
+                        <button class="btn btn-outline-info" (click)="bookService(service)">Rezerviraj</button>
+                      </div>
+                  </div>
+                </div>
+              </div>
+          </div>  <div class="overlay">
+        </div>
+        </div>
+      </div>
+    </div>
+
+      <div *ngIf = "isModalOpen">
+        <app-booking [booked]="bookedService"></app-booking>
+      </div>
+
+      

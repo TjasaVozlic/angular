@@ -44,7 +44,7 @@ export class UserDataService {
     return this.afs.doc('/users/' + user.uid)
   }
 
-  getUserData(uid: string) {
+  getUserData(uid: string): Observable<any> {
     return this.firestore.collection('users').doc(uid).get();
   }
   
